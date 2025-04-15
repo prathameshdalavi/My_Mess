@@ -416,67 +416,6 @@ router.get("/expenses", userMiddleware, async (req: Request, res: Response) => {
     }
 });
 
-// router.put("/expenses", userMiddleware, async (req: Request, res: Response) => {
-
-
-//     const updateSchema = z.object({
-//         category: z.enum(["groceries", "staff", "utilities", "maintenance"]).optional(),
-//         amount: z.number().positive().optional(),
-//         description: z.string().optional(),
-//         receiptImage: z.string().optional(),
-//         date: z.string().datetime().optional()
-//     });
-
-//     try {
-//         const user = await userModel.findById(req.body.UserId);
-//         if (!user || user.role !== "admin") {
-//             res.status(403).json({ message: "Only admins can update expenses" });
-//             return;
-//         }
-//         const mess = await getAdminMess(req.body.UserId);
-//         if (!mess) {
-//             res.status(400).json({ message: "You don't have a mess assigned" });
-//             return;
-//         }
-//         const parsedData = updateSchema.safeParse(req.body);
-//         if (!parsedData.success) {
-//             res.status(400).json({
-//                 message: "Invalid data",
-//                 errors: parsedData.error.issues
-//             });
-//             return;
-//         }
-//         const expense = await expenseModel.findOne({
-//             recordedBy: req.body.UserId
-//         });
-
-//         if (!expense) {
-//             res.status(404).json({ message: "Expense not found or not editable by you" });
-//             return;
-//         }
-
-//         const updateData: any = {};
-//         if (parsedData.data.category) updateData.category = parsedData.data.category;
-//         if (parsedData.data.amount) updateData.amount = parsedData.data.amount;
-//         if (parsedData.data.description) updateData.description = parsedData.data.description;
-//         if (parsedData.data.receiptImage) updateData.receiptImage = parsedData.data.receiptImage;
-//         if (parsedData.data.date) updateData.date = new Date(parsedData.data.date);
-
-//         const updatedExpense = await expenseModel.find(
-            
-//         );
-
-//         res.json({
-//             message: "Expense updated successfully",
-//             expense: updatedExpense
-//         });
-
-//     } catch (error) {
-//         console.error("Error updating expense:", error);
-//         res.status(500).json({ message: "Internal server error" });
-//         return;
-//     }
-// });
 router.delete("/expenses", userMiddleware, async (req: Request, res: Response) => {
 
 
