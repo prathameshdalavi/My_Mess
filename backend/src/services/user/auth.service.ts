@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt,{sign} from "jsonwebtoken";
 
-import { validateSignin, validateSignup } from "../utils/validators";
-import { userModel } from "../db";
+import { validateSignin, validateSignup } from "../../utils/validators";
+import { userModel } from "../../db";
 import dotenv from "dotenv";
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET || "default_secret";
@@ -15,8 +15,13 @@ export const authService={
         }
         const hashPassword = await bcrypt.hash(validatedData.password, 10);
         const user=await userModel.create({
-            ...validatedData,
-            password:hashPassword,   
+            email: validatedData.email,
+            password: hashPassword,
+            name: validatedData.name,
+            role: validatedData.role,
+            phone: validatedData.phone,
+            college: validatedData.college,
+            hostelAddress: validatedData.hostelAddress  
         })
         const token = jwt.sign({ UserId: user._id }, JWT_SECRET, { expiresIn: "7d" });
         return {user,token}
