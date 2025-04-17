@@ -56,7 +56,6 @@ router.post("/signup", async function (req: Request, res: Response) {
             phone: phone,
             college: college,
             hostelAddress: hostelAddress,
-
         })
         const token = jwt.sign({ UserId: newUser._id }, JWT_SECRET, { expiresIn: "7d" });
 
