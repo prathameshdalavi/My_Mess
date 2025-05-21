@@ -33,3 +33,18 @@ export const validateReview = (data: unknown): ReviewInput => {
   }
   return result.data;
 };
+
+export const validateMess= z.object({
+  name: z.string(),
+  location: z.string(),
+  capacity: z.number(),
+  menu: z.array(z.object({
+    day: z.string(),
+    meals: z.object({
+      breakfast: z.array(z.string()),
+      lunch: z.array(z.string()),
+      dinner: z.array(z.string()),
+      snacks: z.array(z.string())
+    })
+  }))
+}).parse

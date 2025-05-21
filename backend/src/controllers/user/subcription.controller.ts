@@ -1,15 +1,18 @@
 import { subcriptionService } from "../../services/user/subcription.service";
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { ApiResponse } from "../../utils/apiResponse";
+import { userMiddleware } from "../../middleware";
 
-export const subcriptionController={
-    async getSubcription(req:Request, res:Response){
+const router=Router();
+router.get("/getSubcription",userMiddleware,async function(req:Request, res:Response){
         try{
             const subcription=await subcriptionService.getSubscription(req.body.UserId);
-            return new ApiResponse(res).success(subcription,"Subcription Fetched Successfully",200)
+            new ApiResponse(res).success(subcription,"Subcription Fetched Successfully",200)
+            return
         }
         catch(error){
-            return new ApiResponse(res).error(error);
+            new ApiResponse(res).error(error);
+            return
     }
-}
-}    
+})
+export default router
