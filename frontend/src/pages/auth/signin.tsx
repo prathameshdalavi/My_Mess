@@ -1,6 +1,6 @@
 // src/pages/SignInPage.tsx
 import { useRef, useState } from 'react';
-import { BACKEND_URL } from '../config';
+import { BACKEND_URL } from './../../config';
 import { useNavigate } from 'react-router-dom';
 
 export const SignInPage = () => {
@@ -92,7 +92,7 @@ export const SignInPage = () => {
             </div>
           )}
 
-          <form onSubmit={handleSignIn} className="space-y-4">
+          <form onSubmit={handleSignIn} className="space-y-1">
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm text-gray-300">Email Address</label>
               <input

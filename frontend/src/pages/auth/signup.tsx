@@ -1,6 +1,6 @@
 // src/pages/SignupPage.tsx
 import { useRef, useState } from 'react';
-import { BACKEND_URL } from '../config';
+import { BACKEND_URL } from './../../config';
 import { useNavigate } from "react-router-dom";
 
 export const SignupPage = () => {
